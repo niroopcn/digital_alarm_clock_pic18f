@@ -1,0 +1,7 @@
+*.d
+*.p1
+*.pre
+pic18F4580*
+startup*
+.vscode/
+build/
