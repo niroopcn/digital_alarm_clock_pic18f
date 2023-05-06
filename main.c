@@ -75,25 +75,6 @@ void main(void)
 				{
 					get_event();
 					display_event();
-					if (check_for_event() == 0)
-					{
-						/*Disable Timer0 for toggling dashboard*/
-						TMR0ON = 0;
-						TMR0IE = 0;
-						TMR0IF = 0;
-
-						init_timer1(); /*Turn ON Timer1 for 60 Seconds*/
-
-						turn_on_alarm();	/*Turn ON Alarm for 60 seconds*/
-
-						/*Disable Timer1*/
-						TMR1ON = 0;
-						TMR1IE = 0;
-						TMR1IF = 0;
-						
-						/*Enable Timer0 for toggling dashboard*/
-						init_timer0();
-					}
 				}
 				else
 					no_event_present();
@@ -102,6 +83,29 @@ void main(void)
 			}
 		}
 		break;
+		}
+
+		if (read_internal_eeprom(100) == 0x69)
+		{
+			if (check_for_event() == 0)
+			{
+				/*Disable Timer0 for toggling dashboard*/
+				TMR0ON = 0;
+				TMR0IE = 0;
+				TMR0IF = 0;
+
+				init_timer1(); /*Turn ON Timer1 for 60 Seconds*/
+
+				turn_on_alarm(); /*Turn ON Alarm for 60 seconds*/
+
+				/*Disable Timer1*/
+				TMR1ON = 0;
+				TMR1IE = 0;
+				TMR1IF = 0;
+
+				/*Enable Timer0 for toggling dashboard*/
+				init_timer0();
+			}
 		}
 	}
 }

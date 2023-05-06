@@ -14,6 +14,7 @@ extern unsigned char snooze[10];
 
 int check_for_event(void)
 {
+	get_time();
 	get_date();
 	get_event();
 
